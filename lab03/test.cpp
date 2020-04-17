@@ -22,9 +22,9 @@ void
 test_same() {
     double min = 0;
     double max = 0;
-    find_minmax({2, 2, 2}, min, max);
-    assert(min == 2);
-    assert(max == 2);
+    find_minmax({3, 3, 3}, min, max);
+    assert(min == 3);
+    assert(max == 3);
 }
 void
 test_onenumber() {
@@ -39,8 +39,7 @@ test_empty() {
     double min = 0;
     double max = 0;
     find_minmax({}, min, max);
-    assert(min == 2);
-    assert(max == 4);
+
 }
 
 int
