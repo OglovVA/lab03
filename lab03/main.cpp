@@ -50,7 +50,6 @@ void show_histogram_text(const vector<size_t> &bins)
         if (count > max_count)
         {
             max_count = count;
-
         }
     }
     const bool scaling_needed = max_count > MAX_ASTERISK;
