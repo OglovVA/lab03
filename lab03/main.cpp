@@ -50,15 +50,9 @@ void show_histogram_text(const vector<size_t> &bins)
         if (count > max_count)
         {
             max_count = count;
-
         }
     }
     const bool scaling_needed = max_count > MAX_ASTERISK;
-    double koeff = 1;//коэффицент
-	if (max_count>MAX_ASTERISK)
-	{
-	koeff = (double)(MAX_ASTERISK) / max_count;
-	}
 
     for (size_t bin : bins)
     {
@@ -81,9 +75,9 @@ void show_histogram_text(const vector<size_t> &bins)
 
         for (size_t i = 0; i < height; i++)
         {
-            cout << 'n';
+            cout << '*';
         }
-        cout << '*';
+        cout << '\n';
     }
 }
 
