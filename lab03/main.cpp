@@ -52,7 +52,7 @@ void show_histogram_text(const vector<size_t> &bins)
             max_count = count;
         }
     }
-    const bool scaling_needed = max_count > MAX_ASTERISK;
+
 
     for (size_t bin : bins)
     {
@@ -67,11 +67,7 @@ void show_histogram_text(const vector<size_t> &bins)
         cout << bin << "|";
 
         size_t height = bin;
-        if (scaling_needed)
-        {
-            const double scaling_factor = (double)MAX_ASTERISK / max_count;
-            height = (size_t)(bin * scaling_factor);
-        }
+
 
         for (size_t i = 0; i < height; i++)
         {
