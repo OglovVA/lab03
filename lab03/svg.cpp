@@ -26,19 +26,30 @@ void
 svg_end() {
     cout << "</svg>\n";
 }
+void max_height(const vector<size_t>& bins,double& maximum)
+{maximum=bins[0];
+for (size_t bin : bins)
+{    if (bin > maximum) {
+            maximum = bin;
+        }
+    }
+    }
+
 
 void
 show_histogram_svg(const vector<size_t>& bins) {
 const auto IMAGE_WIDTH = 400;
 const size_t MAX_ASTERISK=35;
-const auto IMAGE_HEIGHT = 300;
 const auto TEXT_LEFT = 20;
 const auto TEXT_BASELINE = 20;
-const auto TEXT_WIDTH = 50;
 const auto BIN_HEIGHT = 30;
 const auto BLOCK_WIDTH = 10;
+double maximum;
+max_height(bins,maximum);
+size_t IMAGE_HEIGHT=(maximum*BLOCK_WIDTH)+30;
+double top = IMAGE_HEIGHT-20;
 svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
-double top = 0;
+double TEXT_WIDTH=50;
 unsigned max_count=0;
 for (size_t b : bins)
 {
@@ -55,10 +66,14 @@ else
 height=bin;
 }
 height = BLOCK_WIDTH * height;
-    svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-    svg_rect(TEXT_WIDTH, top, height, BIN_HEIGHT,"red","#aab5ff");
 
-    top += BIN_HEIGHT;
+
+svg_text(TEXT_WIDTH+(BIN_HEIGHT/4.0), top + TEXT_BASELINE, to_string(bin));
+    svg_rect(TEXT_WIDTH, top-height, BIN_HEIGHT, height,"red","#aab5ff");
+TEXT_WIDTH+=BIN_HEIGHT;
+
+
+
 }
 
 
