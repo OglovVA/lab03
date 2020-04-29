@@ -27,14 +27,22 @@ svg_end() {
     cout << "</svg>\n";
 }
 void max_height(const vector<size_t>& bins,double& maximum)
-{maximum=bins[0];
-for (size_t bin : bins)
+{
+    if (bins.size()==0)
+{
+    return;
+}
+else{
+    maximum=bins[0];
+
+
+for (double bin : bins)
 {    if (bin > maximum) {
             maximum = bin;
         }
     }
     }
-
+}
 
 void
 show_histogram_svg(const vector<size_t>& bins) {
