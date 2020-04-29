@@ -11,7 +11,7 @@ void find_minmax(const vector<double>& numbers, double& min, double& max)
     else{
          min = numbers[0];
     max = numbers[0];
-    for (double number : numbers) {
+    for (size_t number : numbers) {
 
         if (number < min) {
             min = number;
