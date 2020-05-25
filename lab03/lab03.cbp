@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="curl/include" />
 		</Compiler>
 		<Unit filename="histogram.cpp" />
 		<Unit filename="histogram.h">
