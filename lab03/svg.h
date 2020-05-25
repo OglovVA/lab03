@@ -18,4 +18,6 @@ svg_end();
 void
 show_histogram_svg(const vector<size_t>& bins);
 
+
+
 #endif // SVG_H_INCLUDED
