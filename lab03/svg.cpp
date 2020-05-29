@@ -35,9 +35,9 @@ for (size_t bin : bins)
     }
     }
 
-
+// изменил определение функции, добавил string stroke, передача в svg_rect
 void
-show_histogram_svg(const vector<size_t>& bins) {
+show_histogram_svg(const vector<size_t>& bins, string stroke) {
 const auto IMAGE_WIDTH = 400;
 const auto TEXT_LEFT = 20;
 const auto TEXT_BASELINE = 20;
@@ -55,7 +55,7 @@ for (size_t bin : bins)
 const double bin_width = BLOCK_WIDTH * bin;
 
 svg_text(TEXT_WIDTH+(BIN_HEIGHT/4.0), top + TEXT_BASELINE, to_string(bin));
-    svg_rect(TEXT_WIDTH, top-bin_width, BIN_HEIGHT, bin_width ,"red","#aab5ff");
+    svg_rect(TEXT_WIDTH, top-bin_width, BIN_HEIGHT, bin_width ,stroke,"#aab5ff");
 TEXT_WIDTH+=BIN_HEIGHT;
 
 

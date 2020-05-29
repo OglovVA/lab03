@@ -10,6 +10,55 @@
 #include <sstream>
 using namespace std;
 
+struct Options
+{
+    string stroke;
+    bool stroke_correct;
+    bool guide;
+    char* url;
+};
+Options parse_args(int argc, char** argv)
+{
+    Options opt;
+    opt.url=0;
+    opt.stroke_correct=false;
+    opt.guide = false;
+
+    for (int i = 1; i < argc; i++)   //i ravnyaetsya 1 potomy cho argv[0] vsegda nazvanie programmy
+    {
+        if (argv[i][0] == '-')
+        {
+            //if (strcmp(argv[i],"-stroke") == 0)
+            if(string(argv[i]) == "-stroke")
+            {
+                if(i+1<argc)
+                {
+                    opt.stroke = string(argv[i+1]);
+                    if (opt.stroke.size())   // esli y argumenta posle -stroke est dlina to rue i znachit ono hotyabi vvdeno
+                    {
+                        opt.stroke_correct=true;
+                        i++;   //perehod k sledyshemy argumenty
+                    }
+                    else
+                        {
+                            opt.guide=true;   //inache esli vvdeno ne pravilno to false
+                        }
+                }
+
+                else   //elsi posle -stroke nichgo net to oshibka
+                {
+                    opt.guide = true;
+                }
+            }
+        }
+        else
+        {
+            opt.url=argv[i];
+        }
+    }
+    return opt;
+}
+
 
 
 vector<double> input_numbers(istream& in, const size_t count) {
@@ -57,8 +106,11 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx) {
     buffer->write(new_items, data_size);
     return data_size;
 }
+
+//izmeneno opredelenie funkcii (dobavleno vtoroi formalniy parametr)
+
 Input
-download(const string& address) {
+download(const string& address,const Options &opt) {
     stringstream buffer;
 
     curl_global_init(CURL_GLOBAL_ALL);
@@ -113,21 +165,35 @@ string make_info_text()
 int main(int argc, char* argv[]) {
     string info = make_info_text();
    Input input;
-     if (argc > 1)
+   Options opt=parse_args(argc,argv);
+    if (opt.guide)
+    {
+        cerr<<"Error";
+        return 1;
+    }
+   if (opt.url)
+    {
+        input = download(opt.url,opt);
+    }
+    else
+    {
+        input = read_input(cin, true);
+    }
+    /* if (argc > 1)
     {
         input = download(argv[1]);
     }
     else
         {
         input = read_input(cin, true);
-        }
+        }*/
 
 
 
 
 
     const auto bins = make_histogram(input);
-    show_histogram_svg(bins);
+    show_histogram_svg(bins,opt.stroke);
     return 0;
 
 }

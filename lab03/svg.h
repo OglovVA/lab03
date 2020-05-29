@@ -16,7 +16,7 @@ void
 svg_end();
 
 void
-show_histogram_svg(const vector<size_t>& bins);
+show_histogram_svg(const vector<size_t>& bins, string stroke); //добавил string stroke в определение функции
 
 
 
