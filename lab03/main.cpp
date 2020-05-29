@@ -24,7 +24,7 @@ Options parse_args(int argc, char** argv)
     opt.stroke_correct=false;
     opt.guide = false;
 
-    for (int i = 1; i < argc; i++)   //i ravnyaetsya 1 potomy cho argv[0] vsegda nazvanie programmy
+    for (int i = 1; i < argc; i++)   //i равно 1 тк argv[0] всегда название программы
     {
         if (argv[i][0] == '-')
         {
@@ -34,18 +34,18 @@ Options parse_args(int argc, char** argv)
                 if(i+1<argc)
                 {
                     opt.stroke = string(argv[i+1]);
-                    if (opt.stroke.size())   // esli y argumenta posle -stroke est dlina to rue i znachit ono hotyabi vvdeno
+                    if (opt.stroke.size())   // если у аргумента после -stroke есть длина то true и значит оно введено
                     {
                         opt.stroke_correct=true;
-                        i++;   //perehod k sledyshemy argumenty
+                        i++;   //переход к следующему аргументу
                     }
                     else
                         {
-                            opt.guide=true;   //inache esli vvdeno ne pravilno to false
+                            opt.guide=true;   //если введено не правильно то false
                         }
                 }
 
-                else   //elsi posle -stroke nichgo net to oshibka
+                else   //проверка на то есть ли после stroke цвет
                 {
                     opt.guide = true;
                 }
@@ -107,8 +107,8 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx) {
     return data_size;
 }
 
-//izmeneno opredelenie funkcii (dobavleno vtoroi formalniy parametr)
 
+//изменено определение функции(добавлен 2й формальный параметр)
 Input
 download(const string& address,const Options &opt) {
     stringstream buffer;
