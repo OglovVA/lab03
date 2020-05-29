@@ -86,8 +86,11 @@ void show_histogram_text(const vector<size_t> &bins)
 
 int main()
 {
-    printf("version10 = %lu\n",GetVersion());
-    printf("version16 = %08lx\n",GetVersion());
+    DWORD info = GetVersion();
+    printf("version16 = %08lx\n",GetVersion());	    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD version = info & mask;
+    printf("version10 = %lu\n",version);
+    printf("version16 = %08lx\n",version);
     return 0;
 
     size_t number_count;
