@@ -158,7 +158,7 @@ string make_info_text()
     DWORD Size = sizeof(system_name);
     GetComputerNameA(system_name, &Size);
    //printf("System name: %s\n", system_name);
-   buffer << "Windows v" << version_major << "." << version_minor << " (build " << build << ")" << " " << "Computer name: " << system_name;
+   buffer << "Windows v" << version_major << "." << version_minor << " (build " << build << ") " << "Computer name: " << system_name;
     return buffer.str();
 }
 
@@ -193,7 +193,7 @@ int main(int argc, char* argv[]) {
 
 
     const auto bins = make_histogram(input);
-    show_histogram_svg(bins,opt.stroke);
+    show_histogram_svg(bins,opt.stroke, info);
     return 0;
 
 }
